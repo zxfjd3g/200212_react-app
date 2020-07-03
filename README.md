@@ -40,7 +40,16 @@ redux的基本使用
 		得到store对象就可以读取其状态数据或更新基状态数据
 		读取状态数据显示: this.props.store.getState()
 		更新状态数据: this.props.store.dispatch(调用action acreator函数返回action对象)
+	问题:
+		1)redux与react组件的代码耦合度太高
+		2)编码不够简洁
 
+## 使用react-redux
+	作用: 专门用来简化react应用中使用redux的react插件
+	使用:
+		yarn add react-redux
+		
+		
 
 
 arr.reduce(reducer, {})
@@ -93,3 +102,4 @@ arr.reduce(reducer, {})
 	26---引入antd使用并实现按需打包与自定义主题样式
 	27---counter_react版本
 	28---counter_redux版本
+	29---counter_react-redux版本
