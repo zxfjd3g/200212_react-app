@@ -9,9 +9,10 @@
 
 ## 使用antd
 	在create-react-app创建的项目中来引入antd
-	下载antd: yarn add antd
 	基本配置使用
-
+		下载antd: yarn add antd
+		引入需要使用组件进行使用: import {Button} from 'antd'
+		引入antd的css样式: import 'antd/dist/antd.css'
 	高级配置使用
 		按需引入打包
 		自定义主题样式
@@ -61,4 +62,5 @@
 
     23---根据配置动态生成导航路由链接
     24---根据配置动态生成路由
-		
+	25---使用react脚手架创建项目并打包运行
+	26---引入antd使用并实现按需打包与自定义主题样式
