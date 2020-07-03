@@ -13,10 +13,20 @@
 		下载antd: yarn add antd
 		引入需要使用组件进行使用: import {Button} from 'antd'
 		引入antd的css样式: import 'antd/dist/antd.css'
-	高级配置使用
+	高级配置使用(参照课件文档实现)
 		按需引入打包
 		自定义主题样式
+		添加路径别名: @   
+		  addWebpackAlias({
+		    '@': path.resolve(__dirname, "src")
+		  }),
+		
+redux理解
+	用来管理多个组件共享状态的工具包
+	它不是react的插件, 但一般与react配合使用
 
+
+arr.reduce(reducer, {})
 
 
 ## 代码片断
