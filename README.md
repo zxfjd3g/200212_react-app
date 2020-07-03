@@ -25,7 +25,21 @@ redux理解
 	用来管理多个组件共享状态的工具包
 	它不是react的插件, 但一般与react配合使用
 
-
+redux的基本使用
+	redux
+		store: 对象 ===> 内部管理reducer函数和state数据
+			getState(): 用于得到内部状态数据
+			dispatch(action对象): 称为分发action ==> 触发reducer调用产生新的state数据
+			subscribe(listener): 监视store内部state数据的改变  ==> 用于在回调中更新组件
+		reducer: 函数 ==> 接收当前的state数据和指定的action对象来计算产生一个新的state数据
+		actions: 工厂函数 ==> 用于产生action对象
+		action-types: 包含action对象的type名称常量
+	index
+		引入store对象, 传递给App
+	App.jsx
+		得到store对象就可以读取其状态数据或更新基状态数据
+		读取状态数据显示: this.props.store.getState()
+		更新状态数据: this.props.store.dispatch(调用action acreator函数返回action对象)
 
 
 
