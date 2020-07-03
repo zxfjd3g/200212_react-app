@@ -26,6 +26,9 @@ redux理解
 	它不是react的插件, 但一般与react配合使用
 
 
+
+
+
 arr.reduce(reducer, {})
 
 
@@ -74,3 +77,5 @@ arr.reduce(reducer, {})
     24---根据配置动态生成路由
 	25---使用react脚手架创建项目并打包运行
 	26---引入antd使用并实现按需打包与自定义主题样式
+	27---counter_react版本
+	28---counter_redux版本

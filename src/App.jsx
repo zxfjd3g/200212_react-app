@@ -1,50 +1,60 @@
 import React, { Component } from 'react'
-
+import PropTypes from 'prop-types'
+import {increment, decrement} from './redux/actions'
+/* 
+store对象的功能:
+  getState(): 读取状态数据
+  dispatch(action): 更新状态数据
+  subscribe(listener): 绑定状态数据变化的 
+*/
 export default class App extends Component {
 
-  state = {
-    count: 0
+  static propTypes = {
+    store: PropTypes.object.isRequired,
   }
 
+  componentDidMount () {
+    // 绑定store内部状态数据变化的监听 ==> 更新当前组件
+    // 返回的是解绑监听的函数
+    this.unsubscribe = this.props.store.subscribe(() => {
+      this.setState({}) // 只要setState()就会导致重新render
+    })
+  }
+
+  // 死亡前解除订阅
+  componentWillUnmount () {
+    this.unsubscribe()
+  }
+  
   increment = () => {
     const number = this.refs.number.value*1
-
-    this.setState({
-      count: this.state.count + number
-    })
+    // 不建议在dispatch()时直接创建action对象
+    // 单独定义工厂函数模块创建action对象  ==> action creator
+    this.props.store.dispatch(increment(number))    
   }
 
   decrement = () => {
     const number = this.refs.number.value*1
-
-    this.setState({
-      count: this.state.count - number
-    })
+    this.props.store.dispatch(decrement(number))   
   }
 
   incrementIfOdd = () => {
     const number = this.refs.number.value*1
-    const count = this.state.count
-    if (count%2===1) {
-      this.setState({
-        count: count + number
-      })
+    if (this.props.store.getState()%2===1) {
+      this.props.store.dispatch(increment(number))   
     }
-    
   }
 
   incrementAsync = () => {
     const number = this.refs.number.value*1
-
     setTimeout(() => {
-      this.setState({
-        count: this.state.count + number
-      })
+      this.props.store.dispatch(increment(number))   
     }, 1000);
   }
 
   render() {
-    const count = this.state.count
+    // 通过store.getState()得到状态数据
+    const count = this.props.store.getState()
     return (
       <div>
         <div>click {count} times</div>
