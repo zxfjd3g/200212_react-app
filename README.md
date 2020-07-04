@@ -207,6 +207,7 @@
 				注意一定不要直接修改原state数据, 而是要产生一个新的
 
 ## 使用装饰器简化高阶组件的使用
+	下载插件包: @babel/plugin-proposal-decorators
 	配置插件: config-overrides.js中: addDecoratorsLegacy()
 	使用: 
 		装饰connect高阶组件: @connect(null, {search})
