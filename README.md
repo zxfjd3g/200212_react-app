@@ -217,7 +217,23 @@
 		class A {}
 		// 等同于
 		class A {}
-		A = decorator(A) || A;
+		A = decorator(A) || A
+
+## comments应用 redux版本
+	Add组件
+		addComment(comment)
+	List组件
+		comments数组
+		removeComment(id)
+	redux
+		state数据: comments数组
+			[
+				{id: 1, username: 'tom', content: 'xxx'},
+				{id: 2, username: 'Jack', content: 'yyy'}
+			]
+		更新操作:
+			addComment(comment)
+			removeComment(id)
 
 
 ## 代码片断
@@ -272,4 +288,6 @@
 	31---counter_redux-final版本
 	32---users_redux版本
 	33---使用装饰器简化高阶组件的使用
-	
+	34---users_redux版本
+	35---comments_redux版本
+	36---todos_redux版本

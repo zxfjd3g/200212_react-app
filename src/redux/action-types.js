@@ -1,11 +1,8 @@
 /* 
-包含n个action对象的type名称常量
-看有几个更新状态数据的操作 
-  ==> 就有几个type 
-  ==> 就有几个case 
-  ==> 就有几个同步action
+包含n个action type名称常量
 */
-
-export const REQUESTING = 'requesting'  // 请求中
-export const REQ_SUCCESS  = 'req_success' // 请求成功
-export const REQ_ERROR = 'req_error' // 请求失败
+export const ADD_TODO = 'add_todo'
+export const DELETE_TODO = 'delete_todo'
+export const UPDATE_TODO = 'update_todo'
+export const CHECK_ALL_TODOS = 'check_all_todos'
+export const DELETE_COMPLETED_TODOS = 'delete_completed_todos'
