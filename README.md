@@ -80,19 +80,19 @@
 			}
 		)(App)	
 
-	区别容器组件与UI组件
-		UI组件
-			主要做界面显示, 不直接与redux(store)通信, 不直接使用任何redux相关API
-			通过接收一般属性得到store中的状态数据显示
-			通过接收函数属性, 内部调用它来更新store中的状态数据==> 更新组件
-		容器组件
-			通过connect产生的组件: connect()(UI组件) 返回的是容器组件
-			是redux与UI组件之间进行通信的桥梁(连接者):  
-			负责向UI组件传递一般属性, 属性值从state中读取
-			负责向UI组件传递函数属性, 函数内部调用dispatch()==>reducer调用 ==> 产生新状态数据 ==> 更新组件
-				<ContainerCom>
-					<UICom count={}  increment={} decrement={}/>
-				</ContainerCom>
+		区别容器组件与UI组件
+			UI组件
+				主要做界面显示, 不直接与redux(store)通信, 不直接使用任何redux相关API
+				通过接收一般属性得到store中的状态数据显示
+				通过接收函数属性, 内部调用它来更新store中的状态数据==> 更新组件
+			容器组件
+				通过connect产生的组件: connect()(UI组件) 返回的是容器组件
+				是redux与UI组件之间进行通信的桥梁(连接者):  
+				负责向UI组件传递一般属性, 属性值从state中读取
+				负责向UI组件传递函数属性, 函数内部调用dispatch()==>reducer调用 ==> 产生新状态数据 ==> 更新组件
+					<ContainerCom>
+						<UICom count={}  increment={} decrement={}/>
+					</ContainerCom>
 			
 		高阶函数:
 			接收的参数是函数
@@ -102,10 +102,23 @@
 		connect就是高阶函数, 但不是高阶组件
 		connect函数返回的函数才是高阶组件
 		注意: 交流时常说: connect高阶组件
-		connect()(App)
-
-
-arr.reduce(reducer, {})
+	问题:
+		redux本身不支持异步操作
+## redux-thunk
+	作用: 实现redux异步编码
+	下载: yarn add redux-thunk
+	使用:
+		应用上异步中间件: createStore(reducer, applyMiddleware(thunk))
+		定义异步action creator: 
+			incrementAsync = (number) => {
+			 return dispatch => {
+			  // 执行异步操作
+			  // 完成后, 分发同步action
+			 }
+			}
+		区别同步action与异步action
+			同步action: 对象类型 {type: 'xxx', data: value}
+			异步action: 函数类型 dispatch => {执行异步代码, 完成后, dispatch(同步action对象)}
 
 
 ## 代码片断
@@ -156,3 +169,4 @@ arr.reduce(reducer, {})
 	27---counter_react版本
 	28---counter_redux版本
 	29---counter_react-redux版本
+	30---counter_redux-thunk版本

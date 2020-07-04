@@ -1,16 +1,11 @@
 /* 
 redux最核心的管理对象
 */
-import {createStore, applyMiddleware} from 'redux'
-import thunk from 'redux-thunk'
-
+import {createStore} from 'redux'
 import reducer from './reducer'
 
 // 创建store对象
-const store = createStore(
-  reducer, 
-  applyMiddleware(thunk)  // 应用上redux的异步中间件
-) 
+const store = createStore(reducer) 
 // console.log('store', store, store.getState())
 /* 
 store内部管理着2个东西

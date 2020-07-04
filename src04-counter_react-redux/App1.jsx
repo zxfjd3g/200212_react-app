@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {increment, decrement, incrementAsync} from './redux/actions'
+import {increment, decrement} from './redux/actions'
 /* 
 store对象的功能:
   getState(): 读取状态数据
@@ -18,10 +18,9 @@ store对象的功能:
 class App extends Component {
 
   static propTypes = {
-    count: PropTypes.number.isRequired,  // 声明接收一般属性
-    increment: PropTypes.func.isRequired, // 声明接收函数属性
-    decrement: PropTypes.func.isRequired,
-    incrementAsync: PropTypes.func.isRequired,
+    count: PropTypes.number,  // 声明接收一般属性
+    increment: PropTypes.func, // 声明接收函数属性
+    decrement: PropTypes.func,
   }
 
   increment = () => {
@@ -45,7 +44,9 @@ class App extends Component {
 
   incrementAsync = () => {
     const number = this.refs.number.value*1
-    this.props.incrementAsync(number)
+    setTimeout(() => {
+      this.props.increment(number)
+    }, 1000);
   }
 
   render() {
@@ -74,42 +75,24 @@ class App extends Component {
 将store的state数据映射成一般属性传递给UI组件
 用于指定一般属性的回调函数
 */
-// const mapStatetoProps = state => ({ // 对象中所有属性都自动传递给UI组件App
-//   count: state
-// })
+const mapStatetoProps = state => ({ // 对象中所有属性都自动传递给UI组件App
+  count: state
+})
 
 /* 
 将包含dispatch()的函数映射成属性传递给UI组件
 用于指定函数属性的回调函数
 */
-// const mapDispatchToProps = (dispatch) => ({ // 对象中的所有方法(函数)都自动传递给UI组件App
-//   increment: number => dispatch(increment(number)),
-//   decrement: number => dispatch(decrement(number)),
-//   incrementAsync: number => dispatch(incrementAsync(number)),
-// })
+const mapDispatchToProps = (dispatch) => ({ // 对象中的所有方法(函数)都自动传递给UI组件App
+  increment: number => dispatch(increment(number)),
+  decrement: number => dispatch(decrement(number)),
+})
 
 // 产生容器组件 ==> ConnectFunction
+const ContainerComp = connect( // 参数指定要向UI组件App传递哪些属性
+  mapStatetoProps, // 用来指定一般属性
+  mapDispatchToProps // 用来指定函数属性
+)(App) // 第二个括号的参数指定UI组件
 
-export default connect( 
-  state => ({
-    count: state
-  }),
-  {
-    increment, 
-    decrement,
-    incrementAsync
-  } 
-)(App) 
-
-/* 
-编码: 
-  {
-    increment, // action creator函数
-    decrement
-  } 
-内部传递给App组件的
-  {
-    increment: number => dispatch(increment(number)),
-    decrement: number => dispatch(decrement(number)),
-  }
-*/
+// 返回容器组件
+export default ContainerComp
