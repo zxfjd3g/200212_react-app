@@ -270,4 +270,5 @@
 	30---counter_redux-thunk版本
 	31---counter_redux-final版本
 	32---users_redux版本
+	33---使用装饰器简化高阶组件的使用
 	
