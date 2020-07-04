@@ -1,5 +1,5 @@
  // 定义了很多修改webpack配置的函数
-const { override, fixBabelImports, addLessLoader, addWebpackAlias } = require('customize-cra');
+const { override, fixBabelImports, addLessLoader, addWebpackAlias, addDecoratorsLegacy} = require('customize-cra');
 const path = require('path')
 
 module.exports = override(
@@ -21,4 +21,6 @@ module.exports = override(
   addWebpackAlias({
     '@': path.resolve(__dirname, "src")
   }),
+  // 添加装饰器的配置
+  addDecoratorsLegacy()
 );

@@ -2,11 +2,6 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {search} from '@/redux/actions'
 
-/* 本质: Search = connect(null, {search}(Search)) */
-@connect(
-  null, 
-  {search}
-)
 class Search extends Component {
   state = {
     searchName: ''
@@ -50,27 +45,7 @@ class Search extends Component {
   }
 }
 
-// export default connect(
-//   null,
-//   {search}  // search: (searchName) => dispath(search(searchName))
-// )(Search)
-
-export default Search // 暴露的是包装后的容器组件
-
-/* 
-装饰器: 当前用来简化高阶组件的使用
-*/
-
-// @fn
-// class A {
-
-// }
-
-// A = fn(A) || A
-
-// function fn(c) {
-//   c.xx = 2
-//   // return c
-// }
-
-// // A = fn(A)
+export default connect(
+  null,
+  {search}  // search: (searchName) => dispath(search(searchName))
+)(Search)

@@ -206,6 +206,19 @@
 				注意不同case下, 要产生的都是对象, 但指定的属性数据不一样
 				注意一定不要直接修改原state数据, 而是要产生一个新的
 
+## 使用装饰器简化高阶组件的使用
+	配置插件: config-overrides.js中: addDecoratorsLegacy()
+	使用: 
+		装饰connect高阶组件: @connect(null, {search})
+		装饰withRouter高阶组件: @withRouter
+	装饰器语法的本质:
+		@decorator
+		class A {}
+		// 等同于
+		class A {}
+		A = decorator(A) || A;
+
+
 ## 代码片断
 	clg→    console.log(object)
 
@@ -257,3 +270,4 @@
 	30---counter_redux-thunk版本
 	31---counter_redux-final版本
 	32---users_redux版本
+	

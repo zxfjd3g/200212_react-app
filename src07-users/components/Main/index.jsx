@@ -2,21 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './index.css'
 
-@connect(
-  /* 
-  {
-    userList: {firstView, loading, users, errorMsg}
-  }
-  state => ({...state.userList})  ==> 不能直接看出传递哪些属性
-  */
-  state => ({ // 明确指定要传递的4个属性 ==> 不用在UI组件Main中声明了
-    firstView: state.userList.firstView,
-    loading: state.userList.loading,
-    users: state.userList.users,
-    errorMsg: state.userList.errorMsg,
-  }),
-  null, // 不需要更新redux的状态
-)
 class Main extends Component {
 
   render() {
@@ -45,4 +30,18 @@ class Main extends Component {
   }
 }
 
-export default Main
+export default connect(
+  /* 
+  {
+    userList: {firstView, loading, users, errorMsg}
+  }
+  state => ({...state.userList})  ==> 不能直接看出传递哪些属性
+  */
+  state => ({ // 明确指定要传递的4个属性 ==> 不用在UI组件Main中声明了
+    firstView: state.userList.firstView,
+    loading: state.userList.loading,
+    users: state.userList.users,
+    errorMsg: state.userList.errorMsg,
+  }),
+  null, // 不需要更新redux的状态
+)(Main)
