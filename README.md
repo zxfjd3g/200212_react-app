@@ -120,6 +120,25 @@
 			同步action: 对象类型 {type: 'xxx', data: value}
 			异步action: 函数类型 dispatch => {执行异步代码, 完成后, dispatch(同步action对象)}
 
+## 应用上redux调试工具:
+	下载redux的chrome
+	下载工具包: yarn add -D redux-devtools-extension
+	编写应用代码: 
+		process.env.NODE_ENV==='production' ? applyMiddleware(thunk)
+		 : composeWithDevTools(applyMiddleware(thunk)) 
+
+## 整合多个reducer
+	合并多个reducer:
+		combineReducers({
+		  count,
+		  user
+		})
+	总state的结构: 包含所有子reducer的状态数据的对象
+		{
+			count: 1,
+			user: {username, age}
+		}
+	组件中看到的state就是总的state
 
 ## 代码片断
 	clg→    console.log(object)
@@ -170,3 +189,4 @@
 	28---counter_redux版本
 	29---counter_react-redux版本
 	30---counter_redux-thunk版本
+	31---counter_redux-final版本

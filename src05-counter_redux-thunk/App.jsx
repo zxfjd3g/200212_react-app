@@ -91,8 +91,8 @@ class App extends Component {
 // 产生容器组件 ==> ConnectFunction
 
 export default connect( 
-  state => ({  // {count, user}
-    count: state.count
+  state => ({
+    count: state
   }),
   {
     increment, 

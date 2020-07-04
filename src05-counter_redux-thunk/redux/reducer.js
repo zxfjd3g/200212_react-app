@@ -1,7 +1,6 @@
 /* 
 包含n个用于根据当前的state和指定的action计算产生新的state的函数
 */
-import {combineReducers} from 'redux'
 import {INCREMENT, DECREMENT} from './action-types'
 
 /* 
@@ -14,7 +13,7 @@ action: 对象, 结构: {type: '标识名称', data: 数据值}
   data值保存的是要增加或减少的数量number
 */
 const initCount = 3
-function count(state=initCount, action) {
+export default function count(state=initCount, action) {
   console.log('count()', state, action)
   switch (action.type) {
     case INCREMENT:
@@ -25,41 +24,3 @@ function count(state=initCount, action) {
       return state
   }
 }
-
-/* 
-管理user状态数据的reducer函数
-*/
-const initUser = {
-  username: 'tom',
-  age: 12
-}
-function user(state=initUser, action) {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
-
-/* 
-合并多个reducer生成一个总的reducer
-总state的结构: 包含所有子reducer的状态数据的对象
-  {
-    count: 1,
-    user: {username, age}
-  }
-*/
-export default combineReducers({
-  count,
-  user
-})
-
-/* 
-总的reducer:
-function (state, action) {
-
-  return {
-    count: count(state.count, action)
-    user: user(state.user, action)
-  }
-}
-*/
