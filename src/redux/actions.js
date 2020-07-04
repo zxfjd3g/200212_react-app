@@ -1,22 +1,19 @@
-import {
-  ADD_TODO,
-  DELETE_TODO,
-  UPDATE_TODO,
-  DELETE_COMPLETED_TODOS,
-  CHECK_ALL_TODOS
-} from './action-types'
+import axios from 'axios'
 
-// 添加todo的同步action
-export const addTodo = (title) => ({type: ADD_TODO, title})
+/* 
+包含多个用于创建action对象/函数的工厂函数action creator
+*/
+import {ADD_COMMENT, DELETE_COMMENT} from './action-types'
 
-// 删除todo的同步action
-export const deleteTodo = (id) => ({type:DELETE_TODO, id})
+/* 
+添加的同步action
+*/
+export const addComment = (comment) => ({type: ADD_COMMENT, comment})
 
-// 更新todo的同步action
-export const updateTodo = (id, checked) => ({type:UPDATE_TODO, data: {id, checked}})
+/* 
+删除的同步action
+*/
+export const deleteComment = (id) => ({type: DELETE_COMMENT, id})
 
-// 删除已完成todo的同步action
-export const deleteCompletedTodos = () => ({type:DELETE_COMPLETED_TODOS})
 
-// 全选或全不选todo的同步action
-export const checkAllTodos = (checked) => ({type:CHECK_ALL_TODOS, checked})
+

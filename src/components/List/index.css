@@ -1,15 +1,31 @@
-.todo-main {
-  margin-left: 0px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  padding: 0px;
+.reply {
+  margin-top: 0px;
 }
 
-.todo-empty {
-  height: 40px;
-  line-height: 40px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  padding-left: 5px;
-  margin-top: 10px;
+li {
+  transition: .5s;
+  overflow: hidden;
+}
+
+.handle {
+  width: 40px;
+  border: 1px solid #ccc;
+  background: #fff;
+  position: absolute;
+  right: 10px;
+  top: 1px;
+  text-align: center;
+}
+
+.handle a {
+  display: block;
+  text-decoration: none;
+}
+
+.list-group-item .centence {
+  padding: 0px 50px;
+}
+
+.user {
+  font-size: 22px;
 }

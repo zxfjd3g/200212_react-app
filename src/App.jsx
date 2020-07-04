@@ -1,24 +1,26 @@
 import React, { Component } from 'react'
-
-import Header from './components/Header'
+import Add from './components/Add'
 import List from './components/List'
-import Footer from './components/Footer'
-import './App.css'
 
-/* 
-应用主组件
-*/
 export default class App extends Component {
 
   render() {
     return (
-      <div className="todo-container">
-      <div className="todo-wrap">
-        <Header/>
-        <List/>
-        <Footer/>
-       </div>
-    </div>
+      <div>
+        <header className="site-header jumbotron">
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12">
+                <h1>请发表对React的评论</h1>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div className="container">
+            <Add/>
+            <List/>
+        </div>
+      </div>
     )
   }
 }

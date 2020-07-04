@@ -1,8 +1,10 @@
 /* 
-包含n个action type名称常量
+包含n个action对象的type名称常量
+看有几个更新状态数据的操作 
+  ==> 就有几个type 
+  ==> 就有几个case 
+  ==> 就有几个同步action
 */
-export const ADD_TODO = 'add_todo'
-export const DELETE_TODO = 'delete_todo'
-export const UPDATE_TODO = 'update_todo'
-export const CHECK_ALL_TODOS = 'check_all_todos'
-export const DELETE_COMPLETED_TODOS = 'delete_completed_todos'
+
+export const ADD_COMMENT = 'add_comment'  // 添加评论
+export const DELETE_COMMENT = 'delete_comment'  // 删除评论
