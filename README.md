@@ -151,6 +151,61 @@
 		2). 使用http-proxy-middleware来配置多个代理
 			百度: create-react-app 配置多个代理
 
+## 分析user练习的redux版本
+	index.js: 引入并使用Provider和store
+	Main.jsx:  需要读取redux状态数据
+		引入connect
+		包含UI组件生成容器组件:
+			connect(
+				state => ({
+				    firstView: state.userList.firstView,
+				    loading: state.userList.loading,
+				    users: state.userList.users,
+				    errorMsg: state.userList.errorMsg
+				}),
+				null
+			)(Main)
+		在render()中: this.props.xxx得到数据
+
+	Search.jsx: 需要更新redux状态数据(发请求)
+		引入connect和异步action search
+		包含UI组件生成容器组件
+			connect()(Search)
+			connect(
+				null,
+				{search}
+			)(Main)
+		在事件回调函数: this.props.search(searchName) 
+
+	redux:
+		store.js: 非常固定, 写好后不用再动了
+		action-types.js: 
+			定义更新数据操作的常量名称
+			几个更新状态数据的操作
+				==> 就有几个type名称
+				==> 就有几个reducer中的case 
+				==> 就有几个actions中的同步action
+		actions.js
+			异步action: search
+				发请求前, 分发更新为请求中的同步action
+				发ajax请求
+				如果成功, 分发更新为请求成功的同步action
+				如果失败, 分发更新为请求失败的同步action
+			同步action:
+				请求中: requeting
+				请求成功: reqSuccess
+				请求失败: reqError
+		reducer.js
+			使用combineReducers()来合并多个reducer函数
+				combineReducers({
+				  userList,
+				  // 后面再配置其它reducer
+				})
+			管理userList数据的reducer函数
+				根据action.type是哪个type常量名称返回不同的新的状态数据
+				注意不同case下, 要产生的都是对象, 但指定的属性数据不一样
+				注意一定不要直接修改原state数据, 而是要产生一个新的
+
 ## 代码片断
 	clg→    console.log(object)
 

@@ -27,7 +27,7 @@ export const search = (searchName) => {
     dispatch(requesting())
 
     // 发ajax请求获取用户列表数据
-    axios.get('/api/search/users3', {params: {q: searchName}})
+    axios.get('/api/search/users2', {params: {q: searchName}})
       .then(response => { // 成功了, 更新状态(成功)
         const result = response.data
         const users = result.items.map(item => ({
