@@ -1,17 +1,15 @@
-/* 
-入口JS
-*/
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 
-import store from './redux/store'
 import App from '@/App'
 
-require('./setupProxy')  // 引入启动代理服务器的模块
+import store from './redux/store'
 
 ReactDOM.render((
+  /* Provider: 向内部的容器组件提供接收的store对象 */
   <Provider store={store}>
     <App/>
   </Provider>
 ), document.getElementById('root'))
+

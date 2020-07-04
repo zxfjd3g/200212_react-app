@@ -1,65 +1,53 @@
 /* 
-包含n个用于根据当前的state和指定的action计算产生新的state的函数
+根据老state和指定的action来产生新state的函数
 */
+import {REQUESTING, REQ_ERROR, REQ_SUCCESS} from './action-types'
+
 import {combineReducers} from 'redux'
-import {INCREMENT, DECREMENT} from './action-types'
 
 /* 
-管理count数据的reducer函数
-一般将reducer函数的名称指定为要管理数据的名称
-state: 当前原本的状态值, 第一次调用没有
-action: 对象, 结构: {type: '标识名称', data: 数据值}
-  增加的type: INCREMENT
-  减少的type: DECREMENT
-  data值保存的是要增加或减少的数量number
+管理的是用户列表相关数据的reducer函数
 */
-const initCount = 3
-function count(state=initCount, action) {
-  console.log('count()', state, action)
+const initUserList = {
+  firstView: true, // 是否显示初始界面
+  loading: false, // 是否正在请求中
+  users: [], // 所有匹配的用户列表
+  errorMsg: '', // 需要显示请求错误信息
+}
+function userList(state = initUserList, action) {
   switch (action.type) {
-    case INCREMENT:
-      return state + action.data
-    case DECREMENT:
-      return state - action.data
+    case REQUESTING:  // 请求中
+      return {
+        ...state,
+        firstView: false,
+        loading: true
+      }
+    case REQ_ERROR: // 请求失败
+      return {
+        ...state,
+        loading: false,
+        errorMsg: action.data
+      }
+
+    case REQ_SUCCESS: // 请求成功
+      return {
+        ...state,
+        loading: false,
+        users: action.data
+      }
     default:
       return state
   }
 }
 
-/* 
-管理user状态数据的reducer函数
-*/
-const initUser = {
-  username: 'tom',
-  age: 12
-}
-function user(state=initUser, action) {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
-
-/* 
-合并多个reducer生成一个总的reducer
-总state的结构: 包含所有子reducer的状态数据的对象
-  {
-    count: 1,
-    user: {username, age}
-  }
-*/
+// 暴露合并后的总reducer
 export default combineReducers({
-  count,
-  user
+  userList,
+  // 后面再配置其它reducer
 })
-
 /* 
-总的reducer:
-function (state, action) {
-
-  return {
-    count: count(state.count, action)
-    user: user(state.user, action)
+总state的结构:
+  {
+    userList: {firstView, loading, users, errorMsg}
   }
-}
 */

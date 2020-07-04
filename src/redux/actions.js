@@ -1,31 +1,48 @@
-/* 
-用于创建action对象的工厂函数  ==> action creator
-同步action: 对象类型 {type: 'xxx', data: value}
-异步action: 函数类型 dispatch => {执行异步代码, 完成后, dispatch(同步action对象)}
-*/
-
-import {INCREMENT, DECREMENT} from './action-types'
+import axios from 'axios'
 
 /* 
-增加的同步action
+包含多个用于创建action对象/函数的工厂函数action creator
 */
-export const increment = (number) => ({type: INCREMENT, data: number})
+import {REQUESTING, REQ_ERROR, REQ_SUCCESS} from './action-types'
+// 同步action的名称一般是type名称转小写
+/* 
+变为请求中的同步action
+*/
+const requesting = () => ({type: REQUESTING}) 
+/* 
+变为请求成功的同步action
+*/
+const reqSuccess = (users) => ({type: REQ_SUCCESS, data: users}) 
+/* 
+变为请求失败的同步action
+*/
+const reqError = (errorMsg) => ({type: REQ_ERROR, data: errorMsg}) 
 
 /* 
-减少的同步action
+搜索的异步action
 */
-export const decrement = (number) => ({type: DECREMENT, data: number})
+export const search = (searchName) => {
+  return dispatch => {
+    // 分发同步action => 更新状态(请求中)
+    dispatch(requesting())
 
-/* 
-增加的异步action
-*/
-export const incrementAsync = (number) => {
- return dispatch => {
-  // 执行异步操作
-  setTimeout(() => {
-    // 完成后, 分发同步action
-    dispatch(increment(number))  // 只有分发同步action才会触发reducer调用, 产生新state
-  }, 1000)
- }
+    // 发ajax请求获取用户列表数据
+    axios.get('/api/search/users3', {params: {q: searchName}})
+      .then(response => { // 成功了, 更新状态(成功)
+        const result = response.data
+        const users = result.items.map(item => ({
+          id: item.id,
+          name: item.login,
+          url: item.html_url,
+          avatarUrl: item.avatar_url
+        }))
+
+        // 分发同步action => 更新状态(请求成功)
+        dispatch(reqSuccess(users))
+      })
+      .catch(error => { // 失败了, 更新状态(失败)
+        // 分发同步action => 更新状态(请求失败)
+        dispatch(reqError(error.message))
+      })
+  }
 }
-

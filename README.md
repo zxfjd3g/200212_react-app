@@ -140,6 +140,17 @@
 		}
 	组件中看到的state就是总的state
 
+## 将users练习改造成redux的版本
+	拷贝server ===> 修改端口为4000 ==> 启动服务器
+	配置代理: 
+		1). 使用脚手架内置的
+			package.json: "proxy": "http://localhost:4000"  
+			所有没有对应的前台项目资源的请求都会代理转发
+			问题: 不能将/api的前缀路径在转发请求时去除
+				如果有多个后台接口需要代理 ==> 处理不了
+		2). 使用http-proxy-middleware来配置多个代理
+			百度: create-react-app 配置多个代理
+
 ## 代码片断
 	clg→    console.log(object)
 
