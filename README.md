@@ -104,6 +104,7 @@
 		注意: 交流时常说: connect高阶组件
 	问题:
 		redux本身不支持异步操作
+
 ## redux-thunk
 	作用: 实现redux异步编码
 	下载: yarn add redux-thunk
