@@ -296,3 +296,8 @@
 	37---Context技术_祖孙组件直接通信
 	38---Fragment
 	39---forwardRef
+	40---组件优化
+	41---render props
+	42---lazyload
+	43---hooks
+	44---hooks版users练习

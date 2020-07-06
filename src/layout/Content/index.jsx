@@ -50,6 +50,7 @@ export default class Content extends Component {
     return (
       <div style={{margin: '10px'}}>
         <Switch>
+          <Route path="/home" render={() => <div>Home</div>} />
           {this.renderRouteTags()}
         </Switch>
       </div>
